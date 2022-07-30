@@ -58,6 +58,7 @@
 # Date		Author	Version	Description				#
 #									#
 # 19/04/2022	MG	1.0.1	Created.				#
+# 30/07/2022	MG	1.0.2	Fix sed for Fedora.			#
 #									#
 #########################################################################
 
@@ -70,7 +71,7 @@ set -eo pipefail
 ##################
 readonly outputprefix="$(basename $0):"
 
-readonly version=1.0.1				# Script version
+readonly version=1.0.2				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 arch="x86_64"					# Default architecture
@@ -212,11 +213,11 @@ set_dist_default()
 		if [ -e /etc/os-release ]; then
 			repo=$(sed -n '/^PRETTY_NAME=/s/^.*=//p' /etc/os-release | \
 			sed -e 's/"//g' -e 's/ /_/g' -e 's/_GNU\/Linux//g' \
-				-e 's/_(.*$//g')
+				-e 's/_Linux//g' -e 's/_(.*$//g')
 		else
 			repo=$(sed -n '/^PRETTY_NAME=/s/^.*=//p' /usr/lib/os-release | \
 			sed -e 's/"//g' -e 's/ /_/g' -e 's/_GNU\/Linux//g' \
-				-e 's/_(.*$//g')
+				-e 's/_Linux//g' -e 's/_(.*$//g')
 		fi
 	elif [[ $repo == *"openSUSE_Leap_"* ]]; then
 		predisttarg="lp%{?leap_version}."
