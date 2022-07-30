@@ -232,6 +232,8 @@ set_dist_default()
 			repo="Fedora_$version_id"
 		elif [[ $id == "opensuse-leap" ]]; then
 			repo="$version_id"
+		elif [[ $id == "raspbian" ]]; then
+			repo="Raspbian_$version_id"
 		fi
 	fi
 	if [[ $id == "opensuse-leap" ]]; then
