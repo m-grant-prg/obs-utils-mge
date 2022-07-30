@@ -59,6 +59,10 @@
 #									#
 # 19/04/2022	MG	1.0.1	Created.				#
 # 30/07/2022	MG	1.0.2	Fix sed for Fedora.			#
+#				In processing os-release, use ID and	#
+#				VERSION_ID fields to determine current	#
+#				distro and release. PRETTY_NAME field	#
+#				may not	be a standard format.		#
 #									#
 #########################################################################
 
@@ -76,6 +80,9 @@ readonly packageversion=@pkgversion@		# Package version
 
 arch="x86_64"					# Default architecture
 cla=""
+predisttarg=""
+postdisttarg=""
+repo=""
 
 
 #############
@@ -203,23 +210,31 @@ proc_CL()
 	fi
 }
 
-# Set current ditribution as default.
+# If no repo set on CL, use current distribution as default.
 set_dist_default()
 {
+	local id
+	local os_release_file
+	local version_id
+
 	if [[ $repo = "" ]]; then
-		predisttarg="lp%{?leap_version}."
-		postdisttarg=""
-		# Get openSUSE running version to use as default
-		if [ -e /etc/os-release ]; then
-			repo=$(sed -n '/^PRETTY_NAME=/s/^.*=//p' /etc/os-release | \
-			sed -e 's/"//g' -e 's/ /_/g' -e 's/_GNU\/Linux//g' \
-				-e 's/_Linux//g' -e 's/_(.*$//g')
-		else
-			repo=$(sed -n '/^PRETTY_NAME=/s/^.*=//p' /usr/lib/os-release | \
-			sed -e 's/"//g' -e 's/ /_/g' -e 's/_GNU\/Linux//g' \
-				-e 's/_Linux//g' -e 's/_(.*$//g')
+		os_release_file="/etc/os-release"
+		if [ ! -e "$os_release_file" ]; then
+			os_release_file="/usr/lib/os-release"
 		fi
-	elif [[ $repo == *"openSUSE_Leap_"* ]]; then
+		id=$(sed -n '/^ID=/s/^.*=//p' $os_release_file | \
+			sed -e 's/"//g')
+		version_id=$(sed -n '/^VERSION_ID=/s/^.*=//p' \
+			$os_release_file | sed -e 's/"//g')
+		if [[ $id == "debian" ]]; then
+			repo="Debian_$version_id"
+		elif [[ $id == "fedora" ]]; then
+			repo="Fedora_$version_id"
+		elif [[ $id == "opensuse-leap" ]]; then
+			repo="$version_id"
+		fi
+	fi
+	if [[ $id == "opensuse-leap" ]]; then
 		predisttarg="lp%{?leap_version}."
 		postdisttarg=""
 	fi
