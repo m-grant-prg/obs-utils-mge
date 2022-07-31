@@ -58,11 +58,13 @@
 # Date		Author	Version	Description				#
 #									#
 # 19/04/2022	MG	1.0.1	Created.				#
-# 30/07/2022	MG	1.0.2	Fix sed for Fedora.			#
+# 31/07/2022	MG	1.0.2	Fix sed for Fedora.			#
 #				In processing os-release, use ID and	#
 #				VERSION_ID fields to determine current	#
 #				distro and release. PRETTY_NAME field	#
 #				may not	be a standard format.		#
+#				Move release format processing to the	#
+#				spec file.				#
 #									#
 #########################################################################
 
@@ -80,8 +82,6 @@ readonly packageversion=@pkgversion@		# Package version
 
 arch="x86_64"					# Default architecture
 cla=""
-predisttarg=""
-postdisttarg=""
 repo=""
 
 
@@ -210,7 +210,7 @@ proc_CL()
 	fi
 }
 
-# If no repo set on CL, use current distribution as default.
+# If no repo set on CL, default to current distribution.
 set_dist_default()
 {
 	local id
@@ -222,10 +222,10 @@ set_dist_default()
 		if [ ! -e "$os_release_file" ]; then
 			os_release_file="/usr/lib/os-release"
 		fi
-		id=$(sed -n '/^ID=/s/^.*=//p' $os_release_file | \
-			sed -e 's/"//g')
-		version_id=$(sed -n '/^VERSION_ID=/s/^.*=//p' \
-			$os_release_file | sed -e 's/"//g')
+		id=$(sed -n '/^ID=/s/^.*=//p' $os_release_file \
+			| sed -e 's/"//g')
+		version_id=$(sed -n '/^VERSION_ID=/s/^.*=//p' $os_release_file \
+			| sed -e 's/"//g')
 		if [[ $id == "debian" ]]; then
 			repo="Debian_$version_id"
 		elif [[ $id == "fedora" ]]; then
@@ -236,21 +236,6 @@ set_dist_default()
 			repo="Raspbian_$version_id"
 		fi
 	fi
-	if [[ $id == "opensuse-leap" ]]; then
-		predisttarg="lp%{?leap_version}."
-		postdisttarg=""
-	fi
-}
-
-# Prepare the spec file release string.
-prep_spec_release()
-{
-	for specfile in $(ls *.spec.in); do
-		awk -v prearg="$predisttarg" -v postarg="$postdisttarg" \
-			'{ gsub(/@precompatrelease[@]/,prearg); \
-			gsub(/@postcompatrelease[@]/,postarg); \
-			print ; }' "$specfile" > ${specfile%.in}
-	done
 }
 
 
@@ -262,7 +247,6 @@ proc_CL "$@"
 
 set_dist_default
 
-prep_spec_release
 
 rm -vf ../../$repo/$arch/pkgs/*
 
