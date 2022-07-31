@@ -1,3 +1,9 @@
+2022-07-31 v1.0.2 Mark Grant <m.grant.prg@gmail.com>
+	* bash: Move release format processing to spec file
+	bash: Add Raspbian as possible default
+	bash: Use os-release ID and VERSION_ID fields
+	bash: Fix sed for Fedora
+
 2022-06-25 v1.0.1 Mark Grant <m.grant.prg@gmail.com>
 	* Initial release.
 
