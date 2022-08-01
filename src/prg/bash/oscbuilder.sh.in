@@ -65,6 +65,7 @@
 #				may not	be a standard format.		#
 #				Move release format processing to the	#
 #				spec file.				#
+# 01/08/2022	MG	1.0.3	Correct built-pkgs path.		#
 #									#
 #########################################################################
 
@@ -77,7 +78,7 @@ set -eo pipefail
 ##################
 readonly outputprefix="$(basename $0):"
 
-readonly version=1.0.2				# Script version
+readonly version=1.0.3				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 arch="x86_64"					# Default architecture
@@ -247,8 +248,7 @@ proc_CL "$@"
 
 set_dist_default
 
-
-rm -vf ../../$repo/$arch/pkgs/*
+rm -vf ../../$repo/$arch/built-pkgs/*
 
 osc build -k ~/SWDev/oscbuilder/$repo/$arch/built-pkgs \
 	-p ~/SWDev/oscbuilder/$repo/$arch/tmp-pkg-cache \
