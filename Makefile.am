@@ -19,6 +19,7 @@
 # Date		Author	Version	Description				#
 #									#
 # 30/05/2022	MG	1.0.1	First release.				#
+# 04/08/2022	MG	1.0.2	Add new config file build.		#
 #									#
 #########################################################################
 
@@ -29,7 +30,8 @@ ACLOCAL_AMFLAGS = -I m4
 AM_DISTCHECK_CONFIGURE_FLAGS =
 
 
-SUBDIRS = src/man/1
+SUBDIRS = src/conf/etc
+SUBDIRS += src/man/1
 SUBDIRS += src/prg/bash
 
 

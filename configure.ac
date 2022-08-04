@@ -39,6 +39,7 @@
 # Date		Author	Version	Description				#
 #									#
 # 30/05/2022	MG	1.0.1	First release.				#
+# 04/08/2022	MG	1.0.2	Add new config file build.		#
 #									#
 #########################################################################
 
@@ -53,7 +54,7 @@ AC_COPYRIGHT([Copyright (C) 2022  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION([$Revision: 1.0.1 $])
+AC_REVISION([$Revision: 1.0.2 $])
 
 AC_PREREQ([2.69])
 
@@ -283,6 +284,7 @@ AC_MSG_NOTICE(processing output files)
 
 # Project Makefiles to create.
 AC_CONFIG_FILES([Makefile
+		src/conf/etc/Makefile
 		src/man/1/Makefile
 		src/prg/bash/Makefile])
 

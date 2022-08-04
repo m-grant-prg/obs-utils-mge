@@ -66,6 +66,8 @@
 #				Move release format processing to the	#
 #				spec file.				#
 # 01/08/2022	MG	1.0.3	Correct built-pkgs path.		#
+# 04/08/2022	MG	1.0.4	Add config file with a base output dir	#
+#				entry.					#
 #									#
 #########################################################################
 
@@ -78,11 +80,13 @@ set -eo pipefail
 ##################
 readonly outputprefix="$(basename $0):"
 
-readonly version=1.0.3				# Script version
+readonly version=1.0.4				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 arch="x86_64"					# Default architecture
+base_output_dir=""
 cla=""
+readonly conffile=@sysconfdir@/obs-utils.conf
 repo=""
 
 
@@ -156,6 +160,54 @@ trap_exit()
 # Setup trap
 trap trap_exit SIGHUP SIGINT SIGQUIT SIGTERM
 
+
+# Process config file.
+# No parameters.
+# No return value.
+proc_config_file()
+{
+	local old_IFS
+	local read_base_output_dir
+
+	if [[ ! -f $conffile ]]; then
+		output "Config file $conffile does not exist." 1
+		script_exit 77
+	fi
+	if [[ ! -r $conffile ]]; then
+		output "Incorrect permissions for config file $conffile." 1
+		script_exit 77
+	fi
+
+	old_IFS=$IFS
+	IFS="="
+	exec 3<$conffile
+	while read -u3 -ra input; do
+		# Discard comment lines.
+		[[ "${input[0]}" =~ ^[[:blank:]]*# ]] && continue
+		case ${input[0]} in
+		base_output_dir)
+			read_base_output_dir=${input[1]}
+			;;
+		esac
+	done
+	exec 3<&-
+	IFS=$old_IFS
+
+	if [[ "${read_base_output_dir:0:1}" == "~" ]]; then
+		base_output_dir="${HOME}${read_base_output_dir:1}"
+	else
+		base_output_dir="${read_base_output_dir}"
+	fi
+
+	if [[ ! -d $base_output_dir ]]; then
+		output "Config file output dir not a directory." 1
+		script_exit 77
+	fi
+	if [[ ! -r $base_output_dir ]]; then
+		output "Incorrect permissions for base output directory." 1
+		script_exit 77
+	fi
+}
 
 # Process command line arguments with GNU getopt.
 # Parameters -	$1 is the command line.
@@ -244,14 +296,14 @@ set_dist_default()
 # Main #
 ########
 
+proc_config_file
+
 proc_CL "$@"
 
 set_dist_default
 
-rm -vf ../../$repo/$arch/built-pkgs/*
-
-osc build -k ~/SWDev/oscbuilder/$repo/$arch/built-pkgs \
-	-p ~/SWDev/oscbuilder/$repo/$arch/tmp-pkg-cache \
+osc build -k "$base_output_dir/$repo/$arch/built-pkgs" \
+	-p "$base_output_dir/$repo/$arch/tmp-pkg-cache" \
 	$repo $arch $cla
 
 # And exit.
