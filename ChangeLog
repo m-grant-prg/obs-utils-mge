@@ -1,3 +1,7 @@
+2022-08-08 v1.0.3 Mark Grant <m.grant.prg@gmail.com>
+	* all: Add config file and base output directory entry
+	bash: Correct built-pkgs path
+
 2022-07-31 v1.0.2 Mark Grant <m.grant.prg@gmail.com>
 	* bash: Move release format processing to spec file
 	bash: Add Raspbian as possible default
