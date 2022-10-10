@@ -40,6 +40,8 @@
 #									#
 # 30/05/2022	MG	1.0.1	First release.				#
 # 04/08/2022	MG	1.0.2	Add new config file build.		#
+# 10/10/2022	MG	1.0.3	Separate AutoTools generated files from	#
+#				project root.				#
 #									#
 #########################################################################
 
@@ -54,7 +56,7 @@ AC_COPYRIGHT([Copyright (C) 2022  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION([$Revision: 1.0.2 $])
+AC_REVISION([$Revision: 1.0.3 $])
 
 AC_PREREQ([2.69])
 
@@ -84,6 +86,9 @@ AC_INIT([Kernel Utilities], m4_esyscmd([ \
 AC_MSG_NOTICE(initialisation and setup)
 
 AC_SUBST(pkgversion, $PACKAGE_VERSION)
+
+# Separate AutoTools generated files from project root.
+AC_CONFIG_AUX_DIR([build-aux])
 
 #
 # Passes the options to all am files. Puts objects in the sub-directory
