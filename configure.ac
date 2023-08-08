@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./configure.ac						#
-# Author: Copyright (C) 2022  Mark Grant				#
+# Author: Copyright (C) 2022, 2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -40,6 +40,7 @@
 #									#
 # 30/05/2022	MG	1.0.1	First release.				#
 # 04/08/2022	MG	1.0.2	Add new config file build.		#
+# 08/08/2023	MG	1.0.3	Update Copyright for 2023.		#
 #									#
 #########################################################################
 
@@ -50,11 +51,11 @@
 #					#
 #########################################
 
-AC_COPYRIGHT([Copyright (C) 2022  Mark Grant
+AC_COPYRIGHT([Copyright (C) 2022, 2023  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION([$Revision: 1.0.2 $])
+AC_REVISION([$Revision: 1.0.3 $])
 
 AC_PREREQ([2.69])
 
