@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./Makefile.am						#
-# Author: Copyright (C) 2022  Mark Grant				#
+# Author: Copyright (C) 2022, 2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -20,6 +20,7 @@
 #									#
 # 30/05/2022	MG	1.0.1	First release.				#
 # 04/08/2022	MG	1.0.2	Add new config file build.		#
+# 09/08/2023	MG	1.0.3	Enable use of v1.1.1~rc1 type vesrion	#
 #									#
 #########################################################################
 
@@ -44,12 +45,13 @@ EXTRA_DIST = $(srcdir)/AUTHORS $(srcdir)/ChangeLog $(srcdir)/COPYING \
 
 srctarball:
 	@cwd="$${PWD}" && \
-	targ="$${cwd}/@PACKAGE_TARNAME@-@PACKAGE_VERSION@.tar.gz" && \
+	varg="$$(echo @PACKAGE_VERSION@ | sed -e s/\-rc/\~rc/ )" && \
+	targ="$${cwd}/@PACKAGE_TARNAME@-$${varg}.tar.gz" && \
 	cd @srcdir@ && \
 	echo "making srctarball from @srcdir@" && \
 	echo "GA	$${targ}" && \
 	git archive --format=tar.gz \
-		--prefix=@PACKAGE_TARNAME@-@PACKAGE_VERSION@/ \
+		--prefix=@PACKAGE_TARNAME@-$${varg}/ \
 		--output=$${targ} \
 		HEAD && \
 	cd -
