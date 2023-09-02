@@ -7,7 +7,7 @@
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
-# AutoConf script file to configure obs-utils project.			#
+# AutoConf script file to configure obs-utils-mge project.		#
 #									#
 # configure cmd line syntax:-						#
 # ./configure								#
@@ -43,6 +43,8 @@
 # 10/10/2022	MG	1.0.3	Separate AutoTools generated files from	#
 #				project root.				#
 # 09/08/2023	MG	1.0.4	Update Copyright for 2023.		#
+# 02/09/2023	MG	1.1.0	Change project name to differentiate	#
+#				from new openSUSE package.		#
 #									#
 #########################################################################
 
@@ -57,7 +59,7 @@ AC_COPYRIGHT([Copyright (C) 2022, 2023  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION([$Revision: 1.0.4 $])
+AC_REVISION([$Revision: 1.1.0 $])
 
 AC_PREREQ([2.69])
 
@@ -82,7 +84,7 @@ AC_INIT([Kernel Utilities], m4_esyscmd([ \
 	&& sed --help 1>/dev/null 2>/dev/null \
 	&& git describe --always | sed 's/v//' | tr -d '\n' \
 	|| echo pkg_version | tr -d '\n']),
-	[m.grant.prg@gmail.com], [obs-utils])
+	[m.grant.prg@gmail.com], [obs-utils-mge])
 
 AC_MSG_NOTICE(initialisation and setup)
 

@@ -9,7 +9,7 @@
 #########################################################################
 #									#
 # Script ID: oscbuilder.sh						#
-# Author: Copyright (C) 2022  Mark Grant				#
+# Author: Copyright (C) 2022, 2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -68,6 +68,8 @@
 # 01/08/2022	MG	1.0.3	Correct built-pkgs path.		#
 # 04/08/2022	MG	1.0.4	Add config file with a base output dir	#
 #				entry.					#
+# 02/09/2023	MG	1.1.0	Change project name to differentiate	#
+#				from new openSUSE package.		#
 #									#
 #########################################################################
 
@@ -80,13 +82,13 @@ set -eo pipefail
 ##################
 readonly outputprefix="$(basename $0):"
 
-readonly version=1.0.4				# Script version
+readonly version=1.1.0				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 arch="x86_64"					# Default architecture
 base_output_dir=""
 cla=""
-readonly conffile=@sysconfdir@/obs-utils.conf
+readonly conffile=@sysconfdir@/obs-utils-mge.conf
 repo=""
 
 

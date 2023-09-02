@@ -7,7 +7,7 @@
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
-#	AutoMake script file to generate obs-utils project from		#
+#	AutoMake script file to generate obs-utils-mge project from	#
 # source.								#
 #									#
 #########################################################################
@@ -21,6 +21,8 @@
 # 30/05/2022	MG	1.0.1	First release.				#
 # 04/08/2022	MG	1.0.2	Add new config file build.		#
 # 09/08/2023	MG	1.0.3	Enable use of v1.1.1~rc1 type vesrion	#
+# 02/09/2023	MG	1.1.0	Change project name to differentiate	#
+#				from new openSUSE package.		#
 #									#
 #########################################################################
 

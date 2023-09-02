@@ -2,7 +2,7 @@
 openSUSE Build Service Utilities
 ================================
 
-Author - Copyright (C) 2022 Mark Grant
+Author - Copyright (C) 2022, 2023 Mark Grant
 
 --------
 Contents
@@ -41,7 +41,7 @@ a git environment. This manifests itself in 2 places:-
 a) ... Download either the source or distribution tarball (the .tar.gz file)
 	from:-
 
-https://github.com/m-grant-prg/obs-utils/releases
+https://github.com/m-grant-prg/obs-utils-mge/releases
 
 b) ... Extract the tarball preserving the directory structure.
 
@@ -69,7 +69,7 @@ To uninstall the package:
 Installation packages native to different distributions are available, please
 refer to the relevant installation section on the wiki at:-
 
-https://github.com/m-grant-prg/obs-utils/wiki
+https://github.com/m-grant-prg/obs-utils-mge/wiki
 
 
 ---------------------

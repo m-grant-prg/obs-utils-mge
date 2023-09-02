@@ -1,13 +1,13 @@
 #########################################################################
 #									#
 # Script ID: src/man/1/Makefile.am					#
-# Author: Copyright (C) 2022  Mark Grant				#
+# Author: Copyright (C) 2022, 2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
-#	AutoMake script file to generate obs-utils manual pages		#
+#	AutoMake script file to generate obs-utils-mge manual pages	#
 # from source.								#
 #									#
 #########################################################################
@@ -19,6 +19,8 @@
 # Date		Author	Version	Description				#
 #									#
 # 30/05/2022	MG	1.0.1	First release.				#
+# 02/09/2023	MG	1.1.0	Change project name to differentiate	#
+#				from new openSUSE package.		#
 #									#
 #########################################################################
 
