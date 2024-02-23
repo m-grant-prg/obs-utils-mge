@@ -1,7 +1,6 @@
 #########################################################################
 #									#
-# Script ID: ./configure.ac						#
-# Author: Copyright (C) 2022, 2023  Mark Grant				#
+# Author: Copyright (C) 2022-2024  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -13,7 +12,6 @@
 # ./configure								#
 #									#
 # Layout: (Only relevant sections will exist).				#
-# ChangeLog : High level ChangeLog					#
 # SECTION  1: Initialisation & Setup					#
 # SECTION  2: Architecture, target and host checks			#
 # SECTION  3: Command line arguments					#
@@ -32,22 +30,6 @@
 #									#
 #########################################################################
 
-#########################################################################
-#									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 30/05/2022	MG	1.0.1	First release.				#
-# 04/08/2022	MG	1.0.2	Add new config file build.		#
-# 10/10/2022	MG	1.0.3	Separate AutoTools generated files from	#
-#				project root.				#
-# 09/08/2023	MG	1.0.4	Update Copyright for 2023.		#
-# 02/09/2023	MG	1.1.0	Change project name to differentiate	#
-#				from new openSUSE package.		#
-#									#
-#########################################################################
-
 
 #########################################
 #					#
@@ -55,11 +37,11 @@
 #					#
 #########################################
 
-AC_COPYRIGHT([Copyright (C) 2022, 2023  Mark Grant
+AC_COPYRIGHT([Copyright (C) 2022-2024  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION([$Revision: 1.1.0 $])
+AC_REVISION([$Revision: 1.1.1 $])
 
 AC_PREREQ([2.69])
 

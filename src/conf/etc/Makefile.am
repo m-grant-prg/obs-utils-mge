@@ -1,25 +1,12 @@
 #########################################################################
 #									#
-# Script ID: src/conf/etc/Makefile.am					#
-# Author: Copyright (C) 2022, 2023  Mark Grant				#
+# Author: Copyright (C) 2022-2024  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 # AutoMake script file to install obs-utils-mge configuration files.	#
-#									#
-#########################################################################
-
-#########################################################################
-#									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 04/08/2022	MG	1.0.1	Initial release.			#
-# 02/09/2023	MG	1.1.0	Change project name to differentiate	#
-#				from new openSUSE package.		#
 #									#
 #########################################################################
 
