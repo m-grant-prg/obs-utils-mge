@@ -1,7 +1,10 @@
 NAME
 oscbuilder.sh - Build a package with osc.
 SYNOPSIS
-oscbuilder.sh [OPTIONS] {-- Options to pass to osc]
+oscbuilder.sh [-a] [-r] [-- PASS_THRU_OPTIONS ...]
+oscbuilder.sh {-h|-V}
+
+oscbuilder.sh [OPTIONS] [-- PASS_THRU_OPTIONS ...]
 DESCRIPTION
 oscbuilder.sh is a helper script for building packages with osc. It does the
 following:-
@@ -33,7 +36,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2022 Mark Grant.
+Copyright (C) 2022, 2024 Mark Grant.
 .br
 License GPLv3: GNU GPL version 3 only
 .br
