@@ -16,11 +16,7 @@
 # Purpose:								#
 # A helper script to perform an osc build.				#
 #									#
-# Syntax:	oscbuilder.sh [ -a or --arch 'arch-name'		#
-#			|| -h or --help					#
-#			|| -r or --repo 'Repository'			#
-#			|| -V or --version				#
-#			|| -- param for osc build ]			#
+# Syntax:	See usage().						#
 #									#
 # Exit codes used:-							#
 # Bash standard Exit Codes:	0 - success				#
@@ -79,7 +75,11 @@ repo=""
 usage()
 {
 cat << EOF
-Usage is $(basename "$0") [options]
+Usage is:-
+$(basename "$0") [-a] [-r] [-- PASS_THRU_OPTIONS ...]
+$(basename "$0") {-h|-V}
+Usage is:-
+$(basename "$0") [OPTIONS] [-- PASS_THRU_OPTIONS ...]
 	-a or --arch 'arch-name' Target architecture
 	-h or --help Display this help information
 	-r or --repo 'Repository'
