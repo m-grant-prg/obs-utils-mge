@@ -58,7 +58,7 @@ readonly packageversion=@pkgversion@		# Package version
 
 arch="x86_64"					# Default architecture
 base_output_dir=""
-cla=""
+cla=()
 readonly conffile=@sysconfdir@/obs-utils-mge.conf
 repo=""
 
@@ -238,7 +238,7 @@ proc_CL()
 	# straight to the osc build command line, (to support things like
 	# --no-verify... etc).
 	if (( $# )); then
-		cla=$@
+		cla=( "$@" )
 	fi
 }
 
@@ -283,7 +283,7 @@ set_dist_default
 
 osc build -k "$base_output_dir/$repo/$arch/built-pkgs" \
 	-p "$base_output_dir/$repo/$arch/tmp-pkg-cache" \
-	"$repo" "$arch" "$cla"
+	"$repo" "$arch" "${cla[@]}"
 
 # And exit.
 script_exit 0
