@@ -12,7 +12,7 @@
 #########################################################################
 
 
-oscbuilder.sh.1: Makefile
+oscbuilder.1: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	$(edit) $(srcdir)/$(@F).man.in > $@.tmp
@@ -30,12 +30,11 @@ oscbuilder.sh.1: Makefile
 	fi; \
 	txt2manwrap $(@F) $$section "OBS Utilities Manual" $@.tmp $@
 	rm -f $@.tmp
+oscbuilder.1: $(srcdir)/oscbuilder.1.man.in
 
-oscbuilder.sh.1: $(srcdir)/oscbuilder.sh.1.man.in
+man_MANS = oscbuilder.1
 
-man_MANS = oscbuilder.sh.1
+EXTRA_DIST = $(srcdir)/oscbuilder.1.man.in
 
-EXTRA_DIST = $(srcdir)/oscbuilder.sh.1.man.in
-
-CLEANFILES = *.tmp oscbuilder.sh.1
+CLEANFILES = *.tmp oscbuilder.1
 

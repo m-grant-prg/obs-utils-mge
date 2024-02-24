@@ -1,12 +1,12 @@
 NAME
-oscbuilder.sh - Build a package with osc.
+oscbuilder - Build a package with osc.
 SYNOPSIS
-oscbuilder.sh [-a] [-r] [-- PASS_THRU_OPTIONS ...]
-oscbuilder.sh {-h|-V}
+oscbuilder [-a] [-r] [-- PASS_THRU_OPTIONS ...]
+oscbuilder {-h|-V}
 
-oscbuilder.sh [OPTIONS] [-- PASS_THRU_OPTIONS ...]
+oscbuilder [OPTIONS] [-- PASS_THRU_OPTIONS ...]
 DESCRIPTION
-oscbuilder.sh is a helper script for building packages with osc. It does the
+oscbuilder is a helper script for building packages with osc. It does the
 following:-
 
 1 - It formulates the Release data for the spec file. This data depends on the
@@ -30,7 +30,7 @@ EXIT STATUS
 .br
 64 - Command line usage error
 EXAMPLE
-oscbuilder.sh -r Fedora_36 -a x86_64 -- --no-verify
+oscbuilder -r Fedora_36 -a x86_64 -- --no-verify
 AUTHOR
 Written by Mark Grant.
 REPORTING BUGS

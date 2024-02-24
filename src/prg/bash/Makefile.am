@@ -12,21 +12,18 @@
 #########################################################################
 
 
-oscbuilder.sh: Makefile
+oscbuilder: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	test -f ./$@.in || srcdir=$(srcdir)/; \
-	$(edit) $${srcdir}$(@F).in > $@.tmp
-
+	$(edit) $${srcdir}$(@F).sh.in > $@.tmp
 	mv $@.tmp $@
-
 	chmod a+x $@
+oscbuilder: $(srcdir)/oscbuilder.sh.in
 
-oscbuilder.sh: $(srcdir)/oscbuilder.sh.in
-
-bin_SCRIPTS = oscbuilder.sh
+bin_SCRIPTS = oscbuilder
 
 EXTRA_DIST = $(srcdir)/oscbuilder.sh.in
 
-CLEANFILES = *.tmp oscbuilder.sh
+CLEANFILES = *.tmp oscbuilder
 
