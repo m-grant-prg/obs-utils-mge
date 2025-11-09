@@ -1,0 +1,72 @@
+# shellcheck shell=bash
+#########################################################################
+#									#
+# Author: Copyright (C) 2025  Mark Grant				#
+#									#
+# Released under the GPLv3 only.					#
+# SPDX-License-Identifier: GPL-3.0-only					#
+#									#
+# Purpose:								#
+# Bash completion script.						#
+#									#
+#########################################################################
+
+
+_oscbuilder_get_repos()
+{
+	local OPTS
+
+	OPTS=$(osc repos | sed 's/  */\t/' | cut -f 1 | sort | uniq)
+
+	# shellcheck disable=SC2207  # This is _the_ bash completion pattern,
+	# so leave it be.
+	COMPREPLY=($(compgen -W "${OPTS[*]}" -- "$1"))
+}
+
+
+_oscbuilder_get_arches()
+{
+	local OPTS
+
+	OPTS=$(osc repos | grep "$1" | sed 's/  */\t/' | cut -f 2)
+
+	# shellcheck disable=SC2207  # This is _the_ bash completion pattern,
+	# so leave it be.
+	COMPREPLY=($(compgen -W "${OPTS[*]}" -- "$2"))
+}
+
+
+_oscbuilder()
+{
+	local cur prev OPTS
+	local i repo
+
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+	case $prev in
+	-a|--arch)
+		for ((i = $(( COMP_CWORD - 1 )) ; i >= 0 ; i--)); do
+			if [[ ${COMP_WORDS[i]} == "--repo" \
+				|| ${COMP_WORDS[i]} == "-r" ]]; then
+				repo="${COMP_WORDS[i+1]}"
+				_oscbuilder_get_arches "$repo" "$cur"
+				return 0
+			fi
+		done
+		return 0
+		;;
+	-r|--repo)
+		_oscbuilder_get_repos "$cur"
+		return 0
+		;;
+	esac
+	OPTS="-a -h -r -V"
+	OPTS+=" --arch --help --repo --version"
+	# shellcheck disable=SC2207  # This is _the_ bash completion pattern,
+	# so leave it be.
+	COMPREPLY=( $(compgen -W "${OPTS[*]}" -- "$cur") )
+	return 0
+}
+complete -F _oscbuilder oscbuilder
+

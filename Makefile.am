@@ -1,6 +1,6 @@
 #########################################################################
 #									#
-# Author: Copyright (C) 2022-2024  Mark Grant				#
+# Author: Copyright (C) 2022-2025  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -18,7 +18,8 @@ ACLOCAL_AMFLAGS = -I m4
 AM_DISTCHECK_CONFIGURE_FLAGS =
 
 
-SUBDIRS = src/conf/etc
+SUBDIRS = src/bash-comp
+SUBDIRS += src/conf/etc
 SUBDIRS += src/man/1
 SUBDIRS += src/prg/bash
 
