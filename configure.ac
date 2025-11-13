@@ -70,7 +70,7 @@ AC_PREREQ([2.69])
 # Set pkg_version for a default hard-coded version number.
 m4_define(pkg_version, 1.3.0-rc2)
 
-AC_INIT([Kernel Utilities], m4_esyscmd([ \
+AC_INIT([openSUSE Build Service Utilities], m4_esyscmd([ \
 	git describe --always 1>/dev/null 2>/dev/null \
 	&& sed --help 1>/dev/null 2>/dev/null \
 	&& git describe --always | sed 's/v//' | tr -d '\n' \
