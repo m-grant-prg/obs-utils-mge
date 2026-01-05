@@ -1,3 +1,24 @@
+2026-01-05 v1.3.0 Mark Grant <m.grant.prg@gmail.com>
+	* build(deps): bump actions/checkout from 5 to 6
+	build(deps): bump actions/checkout from 4 to 5
+dependabot[bot] (2):
+
+	at: Update Copyright for 2026
+	Merge pull request #4 from m-grant-prg/dependabot/github_actions/tip/actions/checkout-6
+	at: Upgrade bootstrap.sh to v1.6.2
+	at: Correct package name copy and paste error
+	v1.3.0-rc2
+	at: Add bash completion
+	at: Upgrade bootstrap.sh to v1.6.1
+	Merge pull request #2 from m-grant-prg/dependabot/github_actions/tip/actions/checkout-5
+	v1.3.0-rc1
+	actions: Run on Noble
+	actions: Set dependabot to target stable and old stable branches
+	at: Update Copyright for 2025
+	at: Re-order program checks alphabetically
+	git: Correct reasoning in gitignore, empty not untracked
+Mark Grant (14):
+
 2024-04-08 v1.2.1 Mark Grant <m.grant.prg@gmail.com>
 	* build(deps): bump actions/checkout from 2 to 4
 	dependabot[bot] (1):
