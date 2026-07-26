@@ -159,7 +159,7 @@ proc_config_file()
 
 	old_IFS=$IFS
 	IFS="="
-	exec 3<$conffile
+	exec 3<"$conffile"
 	while read -u3 -ra input; do
 		# Discard comment lines.
 		[[ "${input[0]}" =~ ^[[:blank:]]*# ]] && continue
@@ -220,8 +220,8 @@ proc_CL()
 			shift 2
 			;;
 		-V|--version)
-			printf "%s Script version %s\n" "$0" $version
-			printf "%s Package version %s\n" "$0" $packageversion
+			printf "%s Script version %s\n" "$0" "$version"
+			printf "%s Package version %s\n" "$0" "$packageversion"
 			shift
 			script_exit 0
 			;;
@@ -254,9 +254,10 @@ set_dist_default()
 		if [ ! -e "$os_release_file" ]; then
 			os_release_file="/usr/lib/os-release"
 		fi
-		id=$(sed -n '/^ID=/s/^.*=//p' $os_release_file \
+		id=$(sed -n '/^ID=/s/^.*=//p' "$os_release_file" \
 			| sed -e 's/"//g')
-		version_id=$(sed -n '/^VERSION_ID=/s/^.*=//p' $os_release_file \
+		version_id=$(sed -n '/^VERSION_ID=/s/^.*=//p' \
+			"$os_release_file" \
 			| sed -e 's/"//g')
 		if [[ $id == "debian" ]]; then
 			repo="Debian_$version_id"
