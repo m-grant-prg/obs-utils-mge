@@ -22,6 +22,8 @@ SUBDIRS = src/bash-comp
 SUBDIRS += src/conf/etc
 SUBDIRS += src/man/1
 SUBDIRS += src/prg/bash
+SUBDIRS += src/prg/tests/shellcheck
+SUBDIRS += src/prg/run-tests
 
 
 doc_DATA = AUTHORS ChangeLog COPYING NEWS README
