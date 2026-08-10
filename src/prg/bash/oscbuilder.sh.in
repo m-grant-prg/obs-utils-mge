@@ -1,4 +1,4 @@
-#! @bashlocation@
+#! @envlocation@ bash
 #########################################################################
 #									#
 #	oscbuilder is automatically generated,				#
@@ -8,7 +8,7 @@
 
 #########################################################################
 #									#
-# Author: Copyright (C) 2022-2024  Mark Grant				#
+# Author: Copyright (C) 2022-2024, 2026  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -53,7 +53,7 @@ set -eo pipefail
 ##################
 # Init variables #
 ##################
-readonly version=1.1.1				# Script version
+readonly version=1.1.2				# Script version
 readonly packageversion=@pkgversion@		# Package version
 
 arch="x86_64"					# Default architecture
