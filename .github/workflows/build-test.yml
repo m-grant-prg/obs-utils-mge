@@ -1,6 +1,6 @@
 #########################################################################
 #                                                                       #
-# Author: Copyright (C) 2022-2025  Mark Grant                           #
+# Author: Copyright (C) 2022-2026  Mark Grant                           #
 #                                                                       #
 # Released under the GPLv3 only.                                        #
 # SPDX-License-Identifier: GPL-3.0-only                                 #
@@ -43,6 +43,15 @@ jobs:
         run: ./configure --enable-silent-rules=yes
       - name: Make
         run: make --quiet
+
+      - name: Upload test logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs
+          path: |
+            src/prg/run-tests/test-suite.log
+            src/prg/tests/**/*.log
 
       - name: Check
         run: make --quiet check
