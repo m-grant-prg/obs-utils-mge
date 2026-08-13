@@ -44,6 +44,9 @@ jobs:
       - name: Make
         run: make --quiet
 
+      - name: Check
+        run: make --quiet check
+
       - name: Upload test logs on failure
         if: failure()
         uses: actions/upload-artifact@v7
@@ -52,9 +55,6 @@ jobs:
           path: |
             src/prg/run-tests/test-suite.log
             src/prg/tests/**/*.log
-
-      - name: Check
-        run: make --quiet check
 
       - name: Distcheck
         run: make --quiet distcheck
